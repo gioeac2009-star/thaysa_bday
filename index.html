@@ -1,0 +1,1473 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Feliz Aniversário, Thaysa Leal! 🏋️‍♀️⚡</title>
+  <meta name="description"
+    content="Edição especial comemorativa de aniversário para a personal trainer Thaysa Leal. Força, energia e celebração!" />
+
+  <!-- Google Fonts: Bebas Neue (Athletic/Impact), Montserrat (Headlines), Plus Jakarta Sans (Clean Interface), Caveat (Handwritten Notes) -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link
+    href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Caveat:wght@600;700&family=Montserrat:ital,wght@0,700;0,800;0,900;1,700&family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap"
+    rel="stylesheet">
+
+  <style>
+    :root {
+      --neon-energy: #10f296;
+      --neon-glow: rgba(16, 242, 150, 0.45);
+      --gold-winner: #facc15;
+      --gold-glow: rgba(250, 204, 21, 0.35);
+      --coral-fire: #ff5757;
+      --cyan-pulse: #06b6d4;
+      --bg-dark: #0a0e14;
+      --bg-card: rgba(14, 20, 28, 0.86);
+      --border-card: rgba(16, 242, 150, 0.22);
+      --text-main: #f8fafc;
+      --text-muted: #94a3b8;
+      --tape-color: rgba(16, 242, 150, 0.9);
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      min-height: 100vh;
+      background-color: var(--bg-dark);
+      font-family: 'Plus Jakarta Sans', sans-serif;
+      color: var(--text-main);
+      overflow-x: hidden;
+      position: relative;
+    }
+
+    /* =========================================
+       DYNAMIC FITNESS WALLPAPERS & ATHLETIC GRAIN
+       ========================================= */
+    .bg-container {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100vw;
+      height: 100vh;
+      z-index: -3;
+      overflow: hidden;
+    }
+
+    .bg-slide {
+      position: absolute;
+      inset: -20px;
+      background-size: cover;
+      background-position: center center;
+      background-repeat: no-repeat;
+      opacity: 0;
+      transition: opacity 1.2s cubic-bezier(0.4, 0, 0.2, 1), transform 12s ease-out;
+      transform: scale(1.04);
+      filter: saturate(1.2) brightness(0.65) contrast(1.08);
+    }
+
+    .bg-slide.active {
+      opacity: 1;
+      transform: scale(1);
+    }
+
+    /* Dark Athletic Gradient & Vignette */
+    .bg-overlay {
+      position: fixed;
+      inset: 0;
+      z-index: -2;
+      background: radial-gradient(ellipse at center, rgba(10, 14, 20, 0.72) 0%, rgba(7, 10, 15, 0.88) 60%, rgba(4, 6, 9, 0.97) 100%);
+      pointer-events: none;
+    }
+
+    /* Subtle Athletic Texture Grain */
+    .film-grain {
+      position: fixed;
+      inset: 0;
+      z-index: -1;
+      opacity: 0.18;
+      pointer-events: none;
+      background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)' opacity='0.7'/%3E%3C/svg%3E");
+    }
+
+    /* Floating high-energy sparks/sparks */
+    .sparks-container {
+      position: fixed;
+      inset: 0;
+      z-index: -1;
+      pointer-events: none;
+      overflow: hidden;
+    }
+
+    .spark {
+      position: absolute;
+      width: 3px;
+      height: 3px;
+      background: #10f296;
+      border-radius: 50%;
+      box-shadow: 0 0 10px 2px rgba(16, 242, 150, 0.8);
+      animation: floatUp 9s infinite linear;
+      opacity: 0;
+    }
+
+    @keyframes floatUp {
+      0% {
+        transform: translateY(105vh) translateX(0);
+        opacity: 0;
+      }
+
+      20% {
+        opacity: 0.85;
+      }
+
+      80% {
+        opacity: 0.6;
+      }
+
+      100% {
+        transform: translateY(-5vh) translateX(35px);
+        opacity: 0;
+      }
+    }
+
+    /* =========================================
+       TRAINING PASS / CLIPBOARD MODAL (INTRO)
+       ========================================= */
+    .envelope-overlay {
+      position: fixed;
+      inset: 0;
+      background: rgba(7, 10, 15, 0.95);
+      backdrop-filter: blur(14px);
+      -webkit-backdrop-filter: blur(14px);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      z-index: 9999;
+      transition: opacity 0.8s cubic-bezier(0.4, 0, 0.2, 1), visibility 0.8s;
+      padding: 20px;
+    }
+
+    .envelope-overlay.hidden {
+      opacity: 0;
+      visibility: hidden;
+      pointer-events: none;
+    }
+
+    .clapperboard-envelope {
+      width: 100%;
+      max-width: 490px;
+      background: #111722;
+      border-radius: 18px;
+      border: 1px solid rgba(16, 242, 150, 0.3);
+      box-shadow: 0 25px 65px -15px rgba(0, 0, 0, 0.85), 0 0 40px rgba(16, 242, 150, 0.18);
+      overflow: hidden;
+      animation: passPop 0.8s cubic-bezier(0.16, 1, 0.3, 1);
+      position: relative;
+    }
+
+    @keyframes passPop {
+      0% {
+        transform: scale(0.7) translateY(40px) rotate(-2deg);
+        opacity: 0;
+      }
+
+      100% {
+        transform: scale(1) translateY(0) rotate(0deg);
+        opacity: 1;
+      }
+    }
+
+    /* Workout Pass Top Bar (Carbon / Caution Stripe & Status LED) */
+    .clapper-top {
+      background: #090d14;
+      position: relative;
+      border-bottom: 3px solid #1f2937;
+      box-shadow: inset 0 -2px 6px rgba(0, 0, 0, 0.7);
+      transform-origin: left bottom;
+      transition: transform 0.35s cubic-bezier(0.4, 0, 0.2, 1);
+    }
+
+    .clapper-top.clap-action {
+      animation: clapAnimation 0.5s ease forwards;
+    }
+
+    @keyframes clapAnimation {
+      0% {
+        transform: rotate(0deg);
+      }
+
+      40% {
+        transform: rotate(-16deg);
+      }
+
+      70% {
+        transform: rotate(0deg);
+      }
+
+      85% {
+        transform: rotate(-3deg);
+      }
+
+      100% {
+        transform: rotate(0deg);
+      }
+    }
+
+    .clapper-stripes {
+      height: 48px;
+      background: repeating-linear-gradient(-45deg,
+          #0b0f17,
+          #0b0f17 20px,
+          #10f296 20px,
+          #10f296 38px);
+      border-bottom: 2px solid #000;
+      position: relative;
+    }
+
+    .clapper-hinge {
+      position: absolute;
+      left: 14px;
+      top: 14px;
+      width: 18px;
+      height: 18px;
+      background: radial-gradient(circle, #10f296 40%, #059669 90%);
+      border-radius: 50%;
+      border: 2px solid #042f2e;
+      box-shadow: 0 0 10px rgba(16, 242, 150, 0.7);
+      z-index: 10;
+    }
+
+    .clapper-body {
+      padding: 32px 28px 30px;
+      text-align: center;
+      position: relative;
+    }
+
+    .clapper-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      background: rgba(16, 242, 150, 0.12);
+      color: var(--neon-energy);
+      border: 1px solid rgba(16, 242, 150, 0.35);
+      padding: 6px 16px;
+      border-radius: 20px;
+      font-size: 0.8rem;
+      font-weight: 700;
+      letter-spacing: 1.5px;
+      text-transform: uppercase;
+      margin-bottom: 18px;
+    }
+
+    .clapper-badge span.pulse-dot {
+      width: 8px;
+      height: 8px;
+      background: var(--neon-energy);
+      border-radius: 50%;
+      box-shadow: 0 0 8px var(--neon-energy);
+      animation: pulseLed 1.4s infinite;
+    }
+
+    @keyframes pulseLed {
+
+      0%,
+      100% {
+        transform: scale(1);
+        opacity: 1;
+      }
+
+      50% {
+        transform: scale(1.4);
+        opacity: 0.5;
+      }
+    }
+
+    .clapper-slate-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 12px;
+      background: rgba(0, 0, 0, 0.55);
+      padding: 16px;
+      border-radius: 12px;
+      border: 1px dashed rgba(16, 242, 150, 0.25);
+      margin-bottom: 24px;
+      text-align: left;
+    }
+
+    .slate-item {
+      display: flex;
+      flex-direction: column;
+    }
+
+    .slate-label {
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: 0.95rem;
+      letter-spacing: 1px;
+      color: #94a3b8;
+    }
+
+    .slate-val {
+      font-family: 'Plus Jakarta Sans', sans-serif;
+      font-size: 0.92rem;
+      font-weight: 700;
+      color: #fff;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+
+    .slate-val.highlight {
+      color: var(--neon-energy);
+    }
+
+    .clapper-btn {
+      width: 100%;
+      background: linear-gradient(135deg, #10f296 0%, #059669 50%, #facc15 100%);
+      color: #061512;
+      border: none;
+      padding: 16px 28px;
+      border-radius: 14px;
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: 1.55rem;
+      letter-spacing: 1.8px;
+      cursor: pointer;
+      box-shadow: 0 10px 28px -5px rgba(16, 242, 150, 0.5), 0 0 25px rgba(250, 204, 21, 0.25);
+      transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 10px;
+      font-weight: 700;
+    }
+
+    .clapper-btn:hover {
+      transform: translateY(-2px) scale(1.02);
+      box-shadow: 0 14px 34px -5px rgba(16, 242, 150, 0.7), 0 0 35px rgba(250, 204, 21, 0.4);
+    }
+
+    .clapper-btn:active {
+      transform: translateY(1px) scale(0.98);
+    }
+
+    .clapper-subtext {
+      margin-top: 14px;
+      font-size: 0.8rem;
+      color: #94a3b8;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 6px;
+    }
+
+    /* =========================================
+       TOP FLOATING NAV & MUSIC CONTROLLER
+       ========================================= */
+    .top-bar {
+      position: sticky;
+      top: 16px;
+      z-index: 100;
+      max-width: 900px;
+      margin: 0 auto;
+      padding: 0 16px;
+      margin-bottom: 24px;
+    }
+
+    .top-bar-inner {
+      background: rgba(14, 20, 28, 0.84);
+      backdrop-filter: blur(16px);
+      -webkit-backdrop-filter: blur(16px);
+      border: 1px solid var(--border-card);
+      border-radius: 50px;
+      padding: 8px 16px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 12px;
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.45);
+    }
+
+    .top-brand {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: 1.25rem;
+      letter-spacing: 1.5px;
+      color: var(--neon-energy);
+    }
+
+    .top-brand span.kettle-icon {
+      display: inline-block;
+      animation: pulseIcon 2s infinite ease-in-out;
+      font-size: 1.3rem;
+    }
+
+    @keyframes pulseIcon {
+
+      0%,
+      100% {
+        transform: scale(1);
+      }
+
+      50% {
+        transform: scale(1.15) rotate(-6deg);
+      }
+    }
+
+    /* Scene / Mood selector */
+    .scene-selector {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+
+    .scene-label {
+      font-size: 0.72rem;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      color: var(--text-muted);
+      margin-right: 4px;
+      display: none;
+    }
+
+    @media (min-width: 680px) {
+      .scene-label {
+        display: inline;
+      }
+    }
+
+    .scene-pill {
+      background: rgba(255, 255, 255, 0.08);
+      border: 1px solid rgba(255, 255, 255, 0.12);
+      color: var(--text-muted);
+      border-radius: 20px;
+      padding: 5px 12px;
+      font-size: 0.75rem;
+      font-weight: 600;
+      cursor: pointer;
+      transition: all 0.2s ease;
+      display: flex;
+      align-items: center;
+      gap: 4px;
+    }
+
+    .scene-pill:hover {
+      background: rgba(255, 255, 255, 0.18);
+      color: #fff;
+    }
+
+    .scene-pill.active {
+      background: var(--neon-energy);
+      color: #061712;
+      border-color: var(--neon-energy);
+      box-shadow: 0 0 12px var(--neon-glow);
+    }
+
+    /* Music Player Widget */
+    .music-widget {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      background: rgba(0, 0, 0, 0.45);
+      padding: 4px 10px 4px 6px;
+      border-radius: 30px;
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      cursor: pointer;
+      user-select: none;
+      transition: all 0.2s ease;
+    }
+
+    .music-widget:hover {
+      border-color: rgba(16, 242, 150, 0.45);
+    }
+
+    /* Barbell Plate Disc */
+    .vinyl-disc {
+      width: 28px;
+      height: 28px;
+      border-radius: 50%;
+      background: radial-gradient(circle, #10f296 24%, #181c24 26%, #181c24 38%, #252c38 40%, #11151c 75%);
+      box-shadow: 0 0 6px rgba(0, 0, 0, 0.8);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      position: relative;
+      border: 1px solid rgba(255, 255, 255, 0.15);
+    }
+
+    .vinyl-disc::after {
+      content: '';
+      width: 6px;
+      height: 6px;
+      background: #fff;
+      border-radius: 50%;
+    }
+
+    .vinyl-disc.spinning {
+      animation: spinWeight 2.5s linear infinite;
+    }
+
+    @keyframes spinWeight {
+      from {
+        transform: rotate(0deg);
+      }
+
+      to {
+        transform: rotate(360deg);
+      }
+    }
+
+    .equalizer {
+      display: flex;
+      align-items: flex-end;
+      gap: 2px;
+      height: 14px;
+    }
+
+    .eq-bar {
+      width: 2.5px;
+      background: var(--neon-energy);
+      border-radius: 1px;
+      height: 4px;
+      transition: height 0.2s ease;
+    }
+
+    .music-playing .eq-bar:nth-child(1) {
+      animation: eqAnim 0.7s infinite alternate ease-in-out;
+    }
+
+    .music-playing .eq-bar:nth-child(2) {
+      animation: eqAnim 0.5s infinite alternate ease-in-out 0.2s;
+    }
+
+    .music-playing .eq-bar:nth-child(3) {
+      animation: eqAnim 0.9s infinite alternate ease-in-out 0.4s;
+    }
+
+    @keyframes eqAnim {
+      0% {
+        height: 3px;
+      }
+
+      100% {
+        height: 14px;
+      }
+    }
+
+    .music-status-text {
+      font-size: 0.72rem;
+      font-weight: 600;
+      color: var(--text-muted);
+    }
+
+    /* =========================================
+       MAIN CONTAINER & CONTENT
+       ========================================= */
+    .content-wrapper {
+      max-width: 860px;
+      margin: 0 auto;
+      padding: 0 20px 80px;
+      opacity: 1;
+      transition: opacity 0.8s ease-out, transform 0.8s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+
+    .content-wrapper.hidden {
+      opacity: 0;
+      transform: translateY(30px);
+      pointer-events: none;
+    }
+
+    /* Athletic Performance Card */
+    .film-card {
+      background: var(--bg-card);
+      backdrop-filter: blur(20px);
+      -webkit-backdrop-filter: blur(20px);
+      border-radius: 22px;
+      border: 1px solid var(--border-card);
+      box-shadow: 0 25px 65px -10px rgba(0, 0, 0, 0.8), 0 0 40px rgba(16, 242, 150, 0.12);
+      position: relative;
+      overflow: hidden;
+      margin-bottom: 35px;
+    }
+
+    /* EKG / Athletic Barbell Grip Track */
+    .sprocket-track {
+      height: 20px;
+      background: #0b0f17;
+      display: flex;
+      align-items: center;
+      justify-content: space-around;
+      padding: 0 10px;
+      border-bottom: 1px solid rgba(16, 242, 150, 0.15);
+    }
+
+    .sprocket-track.bottom {
+      border-bottom: none;
+      border-top: 1px solid rgba(16, 242, 150, 0.15);
+    }
+
+    .sprocket-hole {
+      width: 14px;
+      height: 8px;
+      background: #040609;
+      border: 1px solid rgba(16, 242, 150, 0.25);
+      border-radius: 2px;
+      position: relative;
+    }
+
+    .card-body {
+      padding: 48px 38px 42px;
+      position: relative;
+    }
+
+    @media (max-width: 600px) {
+      .card-body {
+        padding: 32px 20px 32px;
+      }
+    }
+
+    /* Neon Straps / Athletic Tape Decor */
+    .washi-tape {
+      position: absolute;
+      top: -12px;
+      right: 40px;
+      background: var(--tape-color);
+      color: #032115;
+      padding: 4px 22px;
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: 0.95rem;
+      letter-spacing: 1.5px;
+      transform: rotate(3deg);
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.35);
+      border-left: 2px dashed rgba(0, 0, 0, 0.25);
+      border-right: 2px dashed rgba(0, 0, 0, 0.25);
+      z-index: 5;
+      font-weight: 700;
+    }
+
+    .washi-tape-left {
+      position: absolute;
+      top: -10px;
+      left: 35px;
+      background: linear-gradient(135deg, #facc15 0%, #eab308 100%);
+      color: #171203;
+      padding: 4px 18px;
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: 0.88rem;
+      letter-spacing: 1.2px;
+      transform: rotate(-3deg);
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.35);
+      z-index: 5;
+      font-weight: 700;
+    }
+
+    /* Header styling */
+    .title-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      color: var(--neon-energy);
+      font-size: 0.82rem;
+      font-weight: 700;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      margin-bottom: 12px;
+    }
+
+    h1.hero-title {
+      font-family: 'Montserrat', sans-serif;
+      font-size: clamp(2.2rem, 5vw, 3.5rem);
+      font-weight: 900;
+      line-height: 1.15;
+      margin-bottom: 14px;
+      background: linear-gradient(135deg, #ffffff 30%, #10f296 75%, #facc15 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      letter-spacing: -0.5px;
+    }
+
+    .hero-subtitle {
+      font-size: 1.15rem;
+      color: var(--text-muted);
+      font-style: italic;
+      font-family: 'Plus Jakarta Sans', sans-serif;
+      font-weight: 400;
+      margin-bottom: 30px;
+      line-height: 1.6;
+    }
+
+    /* Athletic Motivational Quote Banner */
+    .cine-quote-banner {
+      background: rgba(0, 0, 0, 0.5);
+      border-left: 4px solid var(--neon-energy);
+      padding: 18px 24px;
+      border-radius: 0 14px 14px 0;
+      margin-bottom: 35px;
+      display: flex;
+      align-items: center;
+      gap: 16px;
+      box-shadow: 0 8px 20px rgba(0, 0, 0, 0.3);
+    }
+
+    .quote-icon {
+      font-size: 2rem;
+      flex-shrink: 0;
+    }
+
+    .quote-text {
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: 1.45rem;
+      letter-spacing: 1px;
+      color: #fff;
+      line-height: 1.25;
+    }
+
+    .quote-author {
+      display: block;
+      font-family: 'Plus Jakarta Sans', sans-serif;
+      font-size: 0.8rem;
+      color: var(--neon-energy);
+      letter-spacing: 0.5px;
+      margin-top: 4px;
+      text-transform: uppercase;
+      font-weight: 600;
+    }
+
+    /* Letter paragraphs */
+    .letter-content {
+      font-size: 1.08rem;
+      line-height: 1.85;
+      color: #e2e8f0;
+      margin-bottom: 30px;
+    }
+
+    .letter-content p {
+      margin-bottom: 22px;
+    }
+
+    .letter-content p strong {
+      color: #fff;
+      font-weight: 700;
+    }
+
+    .letter-content .highlight-art {
+      color: var(--neon-energy);
+      font-weight: 700;
+    }
+
+    /* Personal Trainer's Handwritten Note */
+    .directors-note {
+      background: rgba(16, 242, 150, 0.08);
+      border: 1px dashed rgba(16, 242, 150, 0.35);
+      border-radius: 16px;
+      padding: 24px 26px;
+      margin: 32px 0;
+      position: relative;
+    }
+
+    .note-tag {
+      position: absolute;
+      top: -12px;
+      left: 20px;
+      background: var(--neon-energy);
+      color: #032115;
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: 0.85rem;
+      letter-spacing: 1px;
+      padding: 3px 12px;
+      border-radius: 6px;
+      font-weight: 700;
+    }
+
+    .note-text {
+      font-family: 'Caveat', cursive;
+      font-size: 1.55rem;
+      color: #a7f3d0;
+      line-height: 1.5;
+    }
+
+    /* Interactive Big "TÁ PAGO" CTA */
+    .action-cta-box {
+      text-align: center;
+      margin: 38px 0 28px;
+    }
+
+    .btn-action-clapper {
+      background: linear-gradient(135deg, #10f296 0%, #059669 45%, #facc15 100%);
+      color: #051a14;
+      border: none;
+      padding: 17px 38px;
+      border-radius: 50px;
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: 1.55rem;
+      letter-spacing: 2px;
+      cursor: pointer;
+      box-shadow: 0 12px 32px -6px rgba(16, 242, 150, 0.55), 0 0 28px rgba(250, 204, 21, 0.3);
+      transition: all 0.25s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+      display: inline-flex;
+      align-items: center;
+      gap: 12px;
+      font-weight: 700;
+    }
+
+    .btn-action-clapper:hover {
+      transform: translateY(-3px) scale(1.03);
+      box-shadow: 0 16px 38px -6px rgba(16, 242, 150, 0.75), 0 0 35px rgba(250, 204, 21, 0.5);
+    }
+
+    .btn-action-clapper:active {
+      transform: translateY(1px) scale(0.98);
+    }
+
+    /* Floating Toast for Praises */
+    .toast-praise {
+      position: fixed;
+      bottom: 24px;
+      left: 50%;
+      transform: translateX(-50%) translateY(100px);
+      background: rgba(14, 20, 28, 0.95);
+      border: 1px solid var(--neon-energy);
+      box-shadow: 0 15px 40px rgba(0, 0, 0, 0.7), 0 0 25px var(--neon-glow);
+      color: #fff;
+      padding: 13px 28px;
+      border-radius: 30px;
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: 1.3rem;
+      letter-spacing: 1.5px;
+      z-index: 1000;
+      opacity: 0;
+      transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      pointer-events: none;
+    }
+
+    .toast-praise.show {
+      transform: translateX(-50%) translateY(0);
+      opacity: 1;
+    }
+
+    /* Signature & Footer of Card */
+    .card-footer-sign {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      border-top: 1px solid rgba(255, 255, 255, 0.1);
+      padding-top: 24px;
+      margin-top: 20px;
+      flex-wrap: wrap;
+      gap: 16px;
+    }
+
+    .signature-wrap {
+      display: flex;
+      flex-direction: column;
+    }
+
+    .sign-intro {
+      font-size: 0.88rem;
+      color: var(--text-muted);
+    }
+
+    .sign-name {
+      font-family: 'Caveat', cursive;
+      font-size: 2.2rem;
+      color: var(--neon-energy);
+      line-height: 1;
+      margin-top: 2px;
+    }
+
+    .card-stamp {
+      border: 2px solid rgba(16, 242, 150, 0.55);
+      border-radius: 10px;
+      padding: 6px 16px;
+      text-align: center;
+      font-family: 'Bebas Neue', sans-serif;
+      letter-spacing: 1.5px;
+      color: var(--neon-energy);
+      transform: rotate(-3deg);
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+    }
+
+    .card-stamp span {
+      display: block;
+      font-size: 0.65rem;
+      color: #fff;
+    }
+
+    /* =========================================
+       SCORECARD / FICHA TÉCNICA OFICIAL
+       ========================================= */
+    .credits-section {
+      background: rgba(10, 14, 20, 0.8);
+      border: 1px dashed rgba(16, 242, 150, 0.25);
+      border-radius: 18px;
+      padding: 36px 30px;
+      margin-top: 40px;
+      text-align: center;
+    }
+
+    .credits-header {
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: 1.85rem;
+      letter-spacing: 2px;
+      color: var(--neon-energy);
+      margin-bottom: 24px;
+    }
+
+    .credits-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: 20px;
+      text-align: center;
+      margin-bottom: 25px;
+    }
+
+    .credit-role {
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: 0.95rem;
+      letter-spacing: 1px;
+      color: #94a3b8;
+    }
+
+    .credit-name {
+      font-size: 1.05rem;
+      font-weight: 700;
+      color: #fff;
+      margin-top: 3px;
+    }
+
+    .credit-name.star {
+      color: var(--neon-energy);
+    }
+
+    .final-clapper-sign {
+      margin-top: 25px;
+      padding-top: 20px;
+      border-top: 1px solid rgba(255, 255, 255, 0.08);
+      font-size: 0.88rem;
+      color: #94a3b8;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+    }
+  </style>
+</head>
+
+<body>
+  <!-- Dynamic Backgrounds (3 Fitness Aesthetics) -->
+  <div class="bg-container">
+    <div class="bg-slide active" id="bg-0" style="background-image: url('bg_forca.jpg');"></div>
+    <div class="bg-slide" id="bg-1" style="background-image: url('bg_vitalidade.jpg');"></div>
+    <div class="bg-slide" id="bg-2" style="background-image: url('bg_performance.jpg');"></div>
+  </div>
+
+  <!-- Atmospheric Dark Gradient & Energy Sparks -->
+  <div class="bg-overlay"></div>
+  <div class="film-grain"></div>
+  <div class="sparks-container" id="sparksContainer"></div>
+
+  <!-- Audio Element (musica.mp3) -->
+  <audio id="bg-music" loop preload="auto">
+    <source src="musica.mp3" type="audio/mpeg" />
+    Seu navegador não suporta áudio HTML5.
+  </audio>
+
+  <!-- ========================================================
+       WORKOUT PASS / INTRO DO TREINO DE ANIVERSÁRIO
+       ======================================================== -->
+  <div class="envelope-overlay" id="envelopeOverlay">
+    <div class="clapperboard-envelope" id="clapperboardBox">
+      <!-- Top Athletic Grip Bar -->
+      <div class="clapper-top" id="clapperTop">
+        <div class="clapper-hinge"></div>
+        <div class="clapper-stripes"></div>
+      </div>
+
+      <!-- Workout Pass Body -->
+      <div class="clapper-body">
+        <div class="clapper-badge">
+          <span class="pulse-dot"></span> PROTOCOLO VIP DE ANIVERSÁRIO
+        </div>
+
+        <div class="clapper-slate-grid">
+          <div class="slate-item">
+            <span class="slate-label">TREINADORA:</span>
+            <span class="slate-val highlight">Thaysa Leal ⭐</span>
+          </div>
+          <div class="slate-item">
+            <span class="slate-label">DATA:</span>
+            <span class="slate-val">HOJE • B-DAY 09/10</span>
+          </div>
+          <div class="slate-item">
+            <span class="slate-label">DE:</span>
+            <span class="slate-val">Giovanni Silva</span>
+          </div>
+          <div class="slate-item">
+            <span class="slate-label">PARA:</span>
+            <span class="slate-val highlight">Thaysa (A Mais Braba!)</span>
+          </div>
+          <div class="slate-item" style="grid-column: span 2;">
+            <span class="slate-label">MISSÃO DO DIA:</span>
+            <span class="slate-val highlight">Hipertrofia de Felicidade & Bolo Liberado!</span>
+          </div>
+        </div>
+
+        <button class="clapper-btn" id="openBtn" onclick="handleOpenProduction()">
+          <span>🏋️‍♀️</span> INICIAR TREINO COMEMORATIVO!
+        </button>
+
+        <div class="clapper-subtext">
+          <span>🎧</span> Trilha sonora inclusa • Prepare a endorfina!
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ========================================================
+       TOP FLOATING NAV (MOOD SWITCHER & TRILHA SONORA)
+       ======================================================== -->
+  <header class="top-bar">
+    <div class="top-bar-inner">
+      <div class="top-brand">
+        <span class="kettle-icon">🏋️‍♀️</span>
+        <span>TEAM THAYSA</span>
+      </div>
+
+      <!-- Mood / Wallpaper Switchers -->
+      <div class="scene-selector">
+        <span class="scene-label">Modo:</span>
+        <button class="scene-pill active" onclick="switchScene(0)" id="pill-0" title="Força e Musculação">
+          💪 Força
+        </button>
+        <button class="scene-pill" onclick="switchScene(1)" id="pill-1" title="Cardio e Vitalidade ao Ar Livre">
+          🏃‍♀️ Vitalidade
+        </button>
+        <button class="scene-pill" onclick="switchScene(2)" id="pill-2" title="Crossfit e Alta Performance">
+          🔥 Performance
+        </button>
+      </div>
+
+      <!-- Music Toggle Widget -->
+      <div class="music-widget" id="musicToggleBtn" onclick="toggleMusic()" title="Tocar / Pausar Trilha Sonora">
+        <div class="vinyl-disc" id="vinylDisc"></div>
+        <div class="equalizer" id="equalizer">
+          <div class="eq-bar"></div>
+          <div class="eq-bar"></div>
+          <div class="eq-bar"></div>
+        </div>
+        <span class="music-status-text" id="musicLabel">Batida</span>
+      </div>
+    </div>
+  </header>
+
+  <!-- ========================================================
+       CONTEÚDO PRINCIPAL (CARTA & HOMENAGEM)
+       ======================================================== -->
+  <main class="content-wrapper hidden" id="contentWrapper">
+    <!-- Main Card -->
+    <article class="film-card">
+      <!-- Upper Track -->
+      <div class="sprocket-track">
+        <div class="sprocket-hole"></div>
+        <div class="sprocket-hole"></div>
+        <div class="sprocket-hole"></div>
+        <div class="sprocket-hole"></div>
+        <div class="sprocket-hole"></div>
+        <div class="sprocket-hole"></div>
+        <div class="sprocket-hole"></div>
+        <div class="sprocket-hole"></div>
+        <div class="sprocket-hole"></div>
+        <div class="sprocket-hole"></div>
+        <div class="sprocket-hole"></div>
+        <div class="sprocket-hole"></div>
+      </div>
+
+      <!-- Body Content -->
+      <div class="card-body">
+        <div class="washi-tape-left">CREF NOTA 1000 ★</div>
+        <div class="washi-tape">TREINADORA DE MILHÕES ⚡</div>
+
+        <div class="title-badge">
+          <span>🔥</span> EDIÇÃO ESPECIAL DE ANIVERSÁRIO • TEMPORADA 2026 <span>🔥</span>
+        </div>
+
+        <h1 class="hero-title">Feliz Aniversário, Thaysa Leal! 🏋️‍♀️✨</h1>
+        <p class="hero-subtitle">Para a personal trainer incrível que não só fortalece o corpo de todo mundo, mas
+          transforma vidas com sua garra, dedicação e energia contagiante.</p>
+
+        <!-- Motivational Quote Banner -->
+        <div class="cine-quote-banner">
+          <div class="quote-icon">⚡</div>
+          <div>
+            <div class="quote-text">“A disciplina constrói resultados, mas a sua energia transforma qualquer dia em
+              vitória.”</div>
+            <span class="quote-author">— E com você liderando o treino, até a última repetição vira pura
+              superação!</span>
+          </div>
+        </div>
+
+        <!-- The Warm Birthday Letter -->
+        <div class="letter-content">
+          <p>
+            Thaysa, hoje o dia é inteirinho seu! E se a vida tivesse um ranking oficial dos maiores campeões, você com
+            certeza estaria no topo do pódio levando todas as medalhas de ouro: <strong>Melhor Personal
+              Trainer</strong>, <strong>Mestra da Motivação</strong> e, acima de tudo, <strong>uma Amiga
+              Incrível</strong>!
+          </p>
+
+          <p>
+            Ser personal trainer vai muito além de prescrever exercícios ou corrigir postura. Quem te conhece sabe que
+            você tem esse dom raro de enxergar o potencial das pessoas antes mesmo de elas mesmas acreditarem. Você
+            ensina sobre superação, constância e amor-próprio em cada série. Você faz o impossível parecer alcançável e
+            <span class="highlight-art">transforma suor em orgulho</span>.
+          </p>
+
+          <p>
+            E claro, como não admirar o seu clássico <em>“só mais duas repetições!”</em> — que a gente sabe muito bem
+            que na verdade são mais cinco com um sorriso motivador no rosto! 😂 Mas é exatamente essa sua intensidade,
+            essa sua exigência cheia de carinho e a sua paixão verdadeira pelo que faz que tornam você uma profissional
+            brilhante e tão querida por todos ao seu redor.
+          </p>
+
+          <p>
+            Sou imensamente grato pela sua amizade, pelas boas conversas, pelas risadas e por toda a vibração positiva
+            que você espalha por onde passa. Que este novo ano seja a sua temporada de maiores recordes: com
+            <strong>saúde de ferro</strong>, muita paz no coração, prosperidade, novos projetos de sucesso e motivos
+            infinitos para comemorar!
+          </p>
+        </div>
+
+        <!-- Handwritten Trainer's Note -->
+        <div class="directors-note">
+          <div class="note-tag">PRESCRIÇÃO DA PERSONAL (DAY-OFF TOTAL)</div>
+          <p class="note-text">
+            “Ps: Hoje o único músculo trabalhado é o do sorriso, o descanso entre as séries é livre para brindar e o
+            bolo de aniversário tá liberado sem contar calorias! Aproveite cada segundo do seu dia, Thaysa. Você merece
+            o mundo e muito mais!”
+          </p>
+        </div>
+
+        <!-- Interactive "TÁ PAGO" Celebration Button -->
+        <div class="action-cta-box">
+          <button class="btn-action-clapper" onclick="triggerClapboardCelebration()">
+            <span>💪</span> TÁ PAGO! (BATER RECORD & CELEBRAR) 🏆
+          </button>
+        </div>
+
+        <!-- Footer Signature & Stamp -->
+        <div class="card-footer-sign">
+          <div class="signature-wrap">
+            <span class="sign-intro">Com muita admiração, carinho e respeito máximo,</span>
+            <span class="sign-name">Gio 🖤⚡</span>
+          </div>
+          <div class="card-stamp">
+            RECORD 2026
+            <span>100% MOTIVAÇÃO</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Lower Track -->
+      <div class="sprocket-track bottom">
+        <div class="sprocket-hole"></div>
+        <div class="sprocket-hole"></div>
+        <div class="sprocket-hole"></div>
+        <div class="sprocket-hole"></div>
+        <div class="sprocket-hole"></div>
+        <div class="sprocket-hole"></div>
+        <div class="sprocket-hole"></div>
+        <div class="sprocket-hole"></div>
+        <div class="sprocket-hole"></div>
+        <div class="sprocket-hole"></div>
+        <div class="sprocket-hole"></div>
+        <div class="sprocket-hole"></div>
+      </div>
+    </article>
+
+    <!-- ========================================================
+         FICHA TÉCNICA OFICIAL / SCORECARD DA CAMPEÃ
+         ======================================================== -->
+    <section class="credits-section">
+      <h3 class="credits-header">✦ FICHA TÉCNICA OFICIAL: ATLETA & INSPIRAÇÃO DO ANO ✦</h3>
+
+      <div class="credits-grid">
+        <div class="credit-item">
+          <div class="credit-role">ATLETA & ESTRELA PRINCIPAL</div>
+          <div class="credit-name star">Thaysa Leal</div>
+        </div>
+        <div class="credit-item">
+          <div class="credit-role">ESPECIALIDADE</div>
+          <div class="credit-name star">Personal Trainer & Transformadora de Vidas</div>
+        </div>
+        <div class="credit-item">
+          <div class="credit-role">PRODUÇÃO DA AMIZADE</div>
+          <div class="credit-name">Giovanni Silva</div>
+        </div>
+        <div class="credit-item">
+          <div class="credit-role">PLAYLIST DO TREINO</div>
+          <div class="credit-name">Batida Pesada & Pura Endorfina</div>
+        </div>
+        <div class="credit-item">
+          <div class="credit-role">CLASSIFICAÇÃO DE CONDICIONAMENTO</div>
+          <div class="credit-name star">⭐⭐⭐⭐⭐ Nível Elite / Nota 1000</div>
+        </div>
+        <div class="credit-item">
+          <div class="credit-role">DESCANSO OBRIGATÓRIO HOJE</div>
+          <div class="credit-name">Liberado com Muito Bolo e Festa! 🎂</div>
+        </div>
+      </div>
+
+      <div class="final-clapper-sign">
+        <span>⚡</span> TREINO CONCLUÍDO COM SUCESSO! Parabéns e vida longa à nossa Personal favorita! 🥂🎉
+      </div>
+    </section>
+  </main>
+
+  <!-- Toast Notification for Reps / Praises -->
+  <div class="toast-praise" id="toastPraise">
+    <span id="toastIcon">🏆</span>
+    <span id="toastMsg">Recorde Pessoal de Felicidade!</span>
+  </div>
+
+  <!-- Canvas for High-Performance Native Confetti Particles -->
+  <canvas id="confettiCanvas" style="position:fixed;inset:0;pointer-events:none;z-index:99999;"></canvas>
+
+  <!-- ========================================================
+       SCRIPTS: AUDIO, CONFETTI, PARTICLES, INTERACTIONS
+       ======================================================== -->
+  <script>
+    // State
+    let currentScene = 0;
+    let isPlaying = false;
+    const collages = [
+      { src: 'bg_forca.jpg', title: 'Força & Musculação' },
+      { src: 'bg_vitalidade.jpg', title: 'Cardio & Vitalidade' },
+      { src: 'bg_performance.jpg', title: 'Alta Performance' }
+    ];
+
+    const praises = [
+      { icon: '🏆', text: 'RECORDE PESSOAL DE FELICIDADE ATINGIDO!' },
+      { icon: '💪', text: 'A PERSONAL MAIS BRABA DO BRASIL!' },
+      { icon: '⚡', text: 'TÁ PAGO COM LOUVOR E MUITA ENDORFINA!' },
+      { icon: '🥇', text: 'PÓDIO GARANTIDO NO CORAÇÃO DE TODOS NÓS!' },
+      { icon: '🎂', text: 'HOJE O BOLO É CARBO DE ALTA PERFORMANCE!' },
+      { icon: '🔥', text: 'VOCÊ É PURA INSPIRAÇÃO, THAYSA!' },
+      { icon: '🌟', text: 'SÓ MAIS 2 REPETIÇÕES... PRA COMEMORAR!' },
+      { icon: '💖', text: 'VIVA A THAYSA! MUITA SAÚDE, FORÇA E SUCESSO!' }
+    ];
+
+    // Background floating energy sparks
+    function createSparks() {
+      const container = document.getElementById('sparksContainer');
+      const count = 22;
+      for (let i = 0; i < count; i++) {
+        const spark = document.createElement('div');
+        spark.className = 'spark';
+        spark.style.left = Math.random() * 100 + 'vw';
+        spark.style.animationDuration = (7 + Math.random() * 8) + 's';
+        spark.style.animationDelay = (Math.random() * 7) + 's';
+        spark.style.width = (2 + Math.random() * 3) + 'px';
+        spark.style.height = spark.style.width;
+        // Alternating neon green and victory gold sparks
+        if (Math.random() > 0.5) {
+          spark.style.background = '#facc15';
+          spark.style.boxShadow = '0 0 10px 2px rgba(250, 204, 21, 0.8)';
+        }
+        container.appendChild(spark);
+      }
+    }
+
+    // Switch Scene / Background Workout Wallpaper
+    function switchScene(index) {
+      currentScene = index;
+      for (let i = 0; i < 3; i++) {
+        const slide = document.getElementById(`bg-${i}`);
+        const pill = document.getElementById(`pill-${i}`);
+        if (i === index) {
+          slide.classList.add('active');
+          if (pill) pill.classList.add('active');
+        } else {
+          slide.classList.remove('active');
+          if (pill) pill.classList.remove('active');
+        }
+      }
+    }
+
+    // Workout Pass Opening
+    function handleOpenProduction() {
+      const topBar = document.getElementById('clapperTop');
+      const envelope = document.getElementById('envelopeOverlay');
+      const content = document.getElementById('contentWrapper');
+
+      // Clapper / Barbell action animation
+      topBar.classList.add('clap-action');
+
+      setTimeout(() => {
+        envelope.classList.add('hidden');
+        content.classList.remove('hidden');
+
+        // Play energetic soundtrack
+        playMusic();
+
+        // Massive confetti explosion
+        burstConfetti(130);
+
+        // Praise toast
+        showPraise("🔥 B-DAY DA THAYSA LEAL: TÁ LIBERADO COMEMORAR! 🎉", "🏋️‍♀️");
+      }, 500);
+    }
+
+    // Audio Control
+    const bgMusic = document.getElementById('bg-music');
+    const vinylDisc = document.getElementById('vinylDisc');
+    const musicLabel = document.getElementById('musicLabel');
+    const musicWidget = document.getElementById('musicToggleBtn');
+
+    function playMusic() {
+      bgMusic.play().then(() => {
+        isPlaying = true;
+        updateMusicUI();
+      }).catch(err => {
+        console.log("Audio autoplay prevented by browser policy:", err);
+      });
+    }
+
+    function toggleMusic() {
+      if (isPlaying) {
+        bgMusic.pause();
+      } else {
+        bgMusic.play();
+      }
+      isPlaying = !isPlaying;
+      updateMusicUI();
+    }
+
+    function updateMusicUI() {
+      if (isPlaying) {
+        vinylDisc.classList.add('spinning');
+        musicWidget.classList.add('music-playing');
+        musicLabel.textContent = 'Batida';
+        musicLabel.style.color = 'var(--neon-energy)';
+      } else {
+        vinylDisc.classList.remove('spinning');
+        musicWidget.classList.remove('music-playing');
+        musicLabel.textContent = 'Pausado';
+        musicLabel.style.color = 'var(--text-muted)';
+      }
+    }
+
+    // Interactive Celebration Button
+    let praiseIdx = 0;
+    function triggerClapboardCelebration() {
+      burstConfetti(65);
+      const item = praises[praiseIdx % praises.length];
+      praiseIdx++;
+      showPraise(item.text, item.icon);
+    }
+
+    let toastTimeout;
+    function showPraise(text, icon) {
+      const toast = document.getElementById('toastPraise');
+      const toastMsg = document.getElementById('toastMsg');
+      const toastIcon = document.getElementById('toastIcon');
+
+      toastMsg.textContent = text;
+      toastIcon.textContent = icon || '💪';
+
+      toast.classList.add('show');
+      clearTimeout(toastTimeout);
+      toastTimeout = setTimeout(() => {
+        toast.classList.remove('show');
+      }, 3200);
+    }
+
+    // High Performance Canvas Confetti
+    const canvas = document.getElementById('confettiCanvas');
+    const ctx = canvas.getContext('2d');
+    let particles = [];
+    // High-energy athletic color palette: neon green, victory gold, cyan, coral, white
+    const colors = ['#10f296', '#facc15', '#06b6d4', '#ff5757', '#ffffff', '#a7f3d0', '#fbbf24'];
+
+    function resizeCanvas() {
+      canvas.width = window.innerWidth;
+      canvas.height = window.innerHeight;
+    }
+    window.addEventListener('resize', resizeCanvas);
+    resizeCanvas();
+
+    function burstConfetti(amount = 70) {
+      const centerX = canvas.width / 2;
+      const centerY = canvas.height * 0.45;
+
+      for (let i = 0; i < amount; i++) {
+        const angle = Math.random() * Math.PI * 2;
+        const velocity = 5 + Math.random() * 14;
+        particles.push({
+          x: centerX + (Math.random() * 100 - 50),
+          y: centerY + (Math.random() * 80 - 40),
+          vx: Math.cos(angle) * velocity,
+          vy: Math.sin(angle) * velocity - 3,
+          color: colors[Math.floor(Math.random() * colors.length)],
+          size: 6 + Math.random() * 8,
+          rotation: Math.random() * 360,
+          rotationSpeed: (Math.random() - 0.5) * 12,
+          alpha: 1,
+          decay: 0.008 + Math.random() * 0.012,
+          isStrip: Math.random() > 0.4
+        });
+      }
+    }
+
+    function updateConfetti() {
+      ctx.clearRect(0, 0, canvas.width, canvas.height);
+
+      for (let i = particles.length - 1; i >= 0; i--) {
+        const p = particles[i];
+        p.x += p.vx;
+        p.y += p.vy;
+        p.vy += 0.35; // gravity
+        p.vx *= 0.985; // drag
+        p.rotation += p.rotationSpeed;
+        p.alpha -= p.decay;
+
+        if (p.alpha <= 0 || p.y > canvas.height + 20) {
+          particles.splice(i, 1);
+          continue;
+        }
+
+        ctx.save();
+        ctx.globalAlpha = p.alpha;
+        ctx.translate(p.x, p.y);
+        ctx.rotate((p.rotation * Math.PI) / 180);
+        ctx.fillStyle = p.color;
+
+        if (p.isStrip) {
+          ctx.fillRect(-p.size / 2, -p.size, p.size, p.size * 2);
+        } else {
+          ctx.beginPath();
+          ctx.arc(0, 0, p.size / 2, 0, Math.PI * 2);
+          ctx.fill();
+        }
+        ctx.restore();
+      }
+
+      requestAnimationFrame(updateConfetti);
+    }
+    updateConfetti();
+
+    // Initialize sparks
+    window.addEventListener('DOMContentLoaded', () => {
+      createSparks();
+    });
+  </script>
+</body>
+
+</html>
